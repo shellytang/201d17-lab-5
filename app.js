@@ -1,4 +1,4 @@
-'use strict';
+$'use strict';
 /////////////////////////////////////
 /* Problem 1 (this is your demo that we'll solve in class)
 Write a function called sum() that takes in two numbers as arguments and then returns an array where the first element is the sum of those numbers, and the second element is a concatenated string that EXACTLY follows this example and uses the values that were input into the function:
@@ -14,7 +14,7 @@ function sum(a,b){ //eslint-disable-line
  + ' is ' + result + '.';
   return [result, message];
 }
-
+2
 // Here is the test for sum(); uncomment it to run it
 testSum(4, 7);
 
@@ -29,10 +29,10 @@ Write a function called multiply() that takes in two numbers as arguments and re
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testMultiply() function and see if the test passes.*/
 
 // Write your code here
-function multiply(a,b){ //eslint-disable-line
+function multiply(a,b) { //eslint-disable-line
   var result = a * b;
   var message = 'The product of ' + a + ' and ' + b + ' is ' + result + '.';
-  return [result, message ];
+  return [result, message];
 }
 
 // Here is the test for multiply(); uncomment it to run it
@@ -54,7 +54,7 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
 function sumAndMultiply(a,b,c){
 
-  var first = sum (a,b)[0];
+  var first = sum (a,b);
   first = sum(first,c)[0];
   var second = multiply(a,b)[0];
   second = multiply(second,c)[0];
@@ -79,11 +79,35 @@ IMPORTANT DETAIL: You may not use the arithmetic operator + in this function. To
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testSumArray() function and see if the test passes.*/
 
 // Write your code here
-var testArray = [2,3,4]; //eslint-disable-line
+//eslint-disable-line
 
-function sumArray(testArray){ //eslint-disable-line
+function sumArray(testArray) { //eslint-disable-line
 
+  //Make the assumption that the array has a variable number of elements\
+  var numberOfElementsInArray = testArray.count;
+
+  //Create a variable to hold the rolling sum of all elements in the array
+  var sumOfAllElements = 0;
+
+  //Use a loop terminal scope to iterate the contents of the array
+  for(var arrayIndex = 0; arrayIndex < numberOfElementsInArray; arrayIndex+=1) {
+
+    //Get the current value for the array index that we requested
+    var arrayElement = testArray[arrayIndex];
+
+    //Perform a "rolling sum" on all of the array elements as we get them
+    sumOfAllElements = arrayElement + sumOfAllElements;
+  }
+
+  //Punch out the rolling sum value
+  return sumOfAllElements;
 }
+
+
+var testArray = [2,3,4];
+var sumOfAllArrayElements = sumArray(testArray);
+
+consle.log(sumOfAllArrayElements);
 
 // Here is the test for sumArray(); uncomment it to run it
 
@@ -104,6 +128,29 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
 function multiplyArray(testArray){ //eslint-disable-line
 
+
+//Problem 1: multiply all elements
+var product = 0;
+var numberOfElementsInArray = testArray.count;
+for(var arrayIndex = 0; arrayIndex < numberOfElementsInArray; arrayIndex+=1) {
+
+  //Get the current value for the array index that we requested
+  var arrayElement = testArray[arrayIndex];
+
+  //Perform a "rolling sum" on all of the array elements as we get them
+  var productArray = multiply(product, arrayElement);
+  product = productArray[0];
+}
+
+
+//Problem 2: make our string
+var string = "";
+
+
+
+//Problem 3; combine product and string into array and return the result
+var array = [product, string];
+return array;
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
