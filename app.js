@@ -1,4 +1,4 @@
-$'use strict';
+'use strict';
 /////////////////////////////////////
 /* Problem 1 (this is your demo that we'll solve in class)
 Write a function called sum() that takes in two numbers as arguments and then returns an array where the first element is the sum of those numbers, and the second element is a concatenated string that EXACTLY follows this example and uses the values that were input into the function:
@@ -16,7 +16,7 @@ function sum(a,b){ //eslint-disable-line
 }
 2
 // Here is the test for sum(); uncomment it to run it
-testSum(4, 7);
+testSum(4,7);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
@@ -54,7 +54,7 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
 function sumAndMultiply(a,b,c){
 
-  var first = sum (a,b);
+  var first = sum (a,b)[0];
   first = sum(first,c)[0];
   var second = multiply(a,b)[0];
   second = multiply(second,c)[0];
@@ -81,37 +81,19 @@ Test this function by hand in the console to get it working, and when you think 
 // Write your code here
 //eslint-disable-line
 
-function sumArray(testArray) { //eslint-disable-line
-
-  //Make the assumption that the array has a variable number of elements\
-  var numberOfElementsInArray = testArray.count;
-
-  //Create a variable to hold the rolling sum of all elements in the array
-  var sumOfAllElements = 0;
-
-  //Use a loop terminal scope to iterate the contents of the array
-  for(var arrayIndex = 0; arrayIndex < numberOfElementsInArray; arrayIndex+=1) {
-
-    //Get the current value for the array index that we requested
-    var arrayElement = testArray[arrayIndex];
-
-    //Perform a "rolling sum" on all of the array elements as we get them
-    sumOfAllElements = arrayElement + sumOfAllElements;
-  }
-
-  //Punch out the rolling sum value
-  return sumOfAllElements;
-}
-
-
 var testArray = [2,3,4];
-var sumOfAllArrayElements = sumArray(testArray);
 
-consle.log(sumOfAllArrayElements);
+function sumArray(testArray) {
+
+  var firstTotal = sum(testArray[0],testArray[1])[0];
+  var finalTotal = sum(firstTotal,testArray[2])[0];
+  var message = testArray[0] +','+ testArray[1] + ',' + testArray[2] + ' was passed in as an array of numbers, and ' + finalTotal + ' is their sum' + '.'
+  return [finalTotal,message];
+}
 
 // Here is the test for sumArray(); uncomment it to run it
 
-// testSumArray(testArray);
+testSumArray(testArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
@@ -126,34 +108,14 @@ IMPORTANT DETAIL: You may not use the arithmetic operator * in this function. To
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testMultiplyArray() function and see if the test passes.*/
 
 // Write your code here
-function multiplyArray(testArray){ //eslint-disable-line
-
-
-//Problem 1: multiply all elements
-var product = 0;
-var numberOfElementsInArray = testArray.count;
-for(var arrayIndex = 0; arrayIndex < numberOfElementsInArray; arrayIndex+=1) {
-
-  //Get the current value for the array index that we requested
-  var arrayElement = testArray[arrayIndex];
-
-  //Perform a "rolling sum" on all of the array elements as we get them
-  var productArray = multiply(product, arrayElement);
-  product = productArray[0];
-}
-
-
-//Problem 2: make our string
-var string = "";
-
-
-
-//Problem 3; combine product and string into array and return the result
-var array = [product, string];
-return array;
+function multiplyArray(testArray) {
+  var firstProduct = multiply(testArray[0],testArray[1])[0];
+  var finalProduct = multiply(firstProduct,testArray[2])[0];
+  var message = 'The numbers ' + testArray[0] + ',' +testArray[1] +','+ testArray[2] + ' have a product of ' + finalProduct + '.';
+  return [finalProduct,message];
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyArray([2,3,4]);
+testMultiplyArray([2,3,4]);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
